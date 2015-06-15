@@ -1,0 +1,45 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+<link rel="import"
+      href="post-service.html">
+
+
+<dom-module id="text-enter">
+  <style type="text/css">
+    ul{
+      height: 200px;
+      overflow: auto;
+    }
+    textarea{
+      width: 100%;
+    }
+  </style>
+  <template>
+    <post-service id="service" messages="{{messages}}"></post-service>
+    <ul>
+      <li>Test</li>
+    </ul>
+    <textarea id"textarea" placeholder="Your name here..."></textarea>
+    <button id="input">Submit</button>
+  </template>
+
+  <script>
+    Polymer({
+      is: "text-enter",
+      
+
+      listeners:{
+        "input.click": "submit"
+      },
+
+      submit: function(event){
+        this.messageContent = Polymer.dom(this.root).querySelector("textarea").value;
+        console.log(this.messageContent);
+        this.service.addMessage({
+            'content': this.messageContent
+        });
+      }
+
+    });
+  </script>
+</dom-module>

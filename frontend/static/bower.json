@@ -1,0 +1,20 @@
+{
+  "name": "tutorial2",
+  "version": "0.0.0",
+  "authors": [
+    "danielthireau <daniel.thireau@business-cloud.fr>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.0.3",
+    "google-apis": "GoogleWebComponents/google-apis#1.0.0"
+  }
+}

@@ -1,0 +1,36 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+<!-- import the iron-input custom element -->
+<link rel="import"
+      href="../bower_components/google-apis/google-apis.html">
+
+<dom-module id="post-service" attribute="messages">    
+    <template>
+        <google-client-loader id="api" name="messages" version="v1" app-id="polymer-gopher" root="http://localhost:8082/_ah/api">
+        </google-client-loader>
+    </template>
+
+
+<script>
+  Polymer({
+     is: "post-service",
+
+        ready: function() {
+            var setMessages = (function(data) {
+                this.messages = data.result.messages;
+            }).bind(this);
+
+            this.$.api.addEventListener('google-api-load', (function() {
+                this.api = this.$.api.api;
+                this.api.getMessages().then(setMessages);
+            }).bind(this));
+
+        },
+        addMessage: function(message) {
+            return this.api.addMessage(message).then((function(data) {
+                this.posts.unshift(data.result);
+            }).bind(this));
+        }
+  });
+</script>
+</dom-module>
